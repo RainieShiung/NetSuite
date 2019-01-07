@@ -1,0 +1,153 @@
+<w:tbl>
+	<w:tblPr>
+		<w:tblStyle w:val="ac"/>
+		<w:tblW w:w="0" w:type="auto"/>
+		<w:tblInd w:w="-142" w:type="dxa"/>
+		<w:tblBorders>
+			<w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+		</w:tblBorders>
+		<w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+	</w:tblPr>
+	<w:tblGrid>
+		<w:gridCol w:w="993"/>
+		<w:gridCol w:w="2405"/>
+		<w:gridCol w:w="992"/>
+		<w:gridCol w:w="1417"/>
+		<w:gridCol w:w="1418"/>
+		<w:gridCol w:w="1417"/>
+		<w:gridCol w:w="1242"/>
+	</w:tblGrid>
+	<w:tr w:rsidR="002121C7" w:rsidTr="008C0E30">
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="993" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="002121C7" w:rsidRDefault="002121C7" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_packing_marks***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="2405" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="002121C7" w:rsidRDefault="002121C7" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_desc***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="992" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="002121C7" w:rsidRDefault="002121C7" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_packing_unit***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="1417" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="002121C7" w:rsidRDefault="002121C7" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_pcs_unit***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="1418" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="002121C7" w:rsidRDefault="002121C7" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_pcs***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="1417" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="002121C7" w:rsidRDefault="002121C7" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_msf***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="1242" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="002121C7" w:rsidRDefault="002121C7" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_m3***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+	</w:tr>
+</w:tbl>

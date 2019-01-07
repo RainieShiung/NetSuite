@@ -1,0 +1,228 @@
+<w:tbl>
+	<w:tblPr>
+		<w:tblStyle w:val="ac"/>
+		<w:tblW w:w="10065" w:type="dxa"/>
+		<w:tblInd w:w="-147" w:type="dxa"/>
+		<w:tblBorders>
+			<w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+			<w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+		</w:tblBorders>
+		<w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+	</w:tblPr>
+	<w:tblGrid>
+		<w:gridCol w:w="2127"/>
+		<w:gridCol w:w="3685"/>
+		<w:gridCol w:w="1560"/>
+		<w:gridCol w:w="2693"/>
+	</w:tblGrid>
+	<w:tr w:rsidR="00452384" w:rsidTr="00452384">
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="2127" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:rFonts w:hint="eastAsia"/>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>CONTAINER</w:t>
+				</w:r>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t xml:space="preserve"> NO.:</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="3685" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:rFonts w:hint="eastAsia"/>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_cntr_no_[seq]***</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="1560" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>SHIPPING MARKS:</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="2693" w:type="dxa"/>
+				<w:vMerge w:val="restart"/>
+			</w:tcPr>
+         ***custrecord_marks***
+		</w:tc>
+	</w:tr>
+	<w:tr w:rsidR="00452384" w:rsidTr="00452384">
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="2127" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:rFonts w:hint="eastAsia"/>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>TOTAL</w:t>
+				</w:r>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t xml:space="preserve"> GROSS WEIGHT:</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="3685" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:rFonts w:hint="eastAsia"/>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_ttl_weight_[seq]*** KGS</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="1560" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="2693" w:type="dxa"/>
+				<w:vMerge/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+			</w:p>
+		</w:tc>
+	</w:tr>
+	<w:tr w:rsidR="00452384" w:rsidTr="00452384">
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="2127" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>TOTAL NET WEIGHT:</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="3685" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+				<w:r>
+					<w:rPr>
+						<w:rFonts w:hint="eastAsia"/>
+						<w:sz w:val="18"/>
+					</w:rPr>
+					<w:t>***custrecord_net_weight_[seq]*** KGS</w:t>
+				</w:r>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="1560" w:type="dxa"/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+			</w:p>
+		</w:tc>
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="2693" w:type="dxa"/>
+				<w:vMerge/>
+			</w:tcPr>
+			<w:p w:rsidR="00452384" w:rsidRDefault="00452384" w:rsidP="00541847">
+				<w:pPr>
+					<w:rPr>
+						<w:sz w:val="18"/>
+					</w:rPr>
+				</w:pPr>
+			</w:p>
+		</w:tc>
+	</w:tr>
+</w:tbl>

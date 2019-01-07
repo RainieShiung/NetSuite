@@ -1,0 +1,606 @@
+<pkg:part pkg:name="/word/header2.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml">
+	<pkg:xmlData>
+		<w:hdr
+			xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas"
+			xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex"
+			xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex"
+			xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex"
+			xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex"
+			xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex"
+			xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex"
+			xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex"
+			xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex"
+			xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex"
+			xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink"
+			xmlns:am3d="http://schemas.microsoft.com/office/drawing/2017/model3d"
+			xmlns:o="urn:schemas-microsoft-com:office:office"
+			xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+			xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"
+			xmlns:v="urn:schemas-microsoft-com:vml"
+			xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing"
+			xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+			xmlns:w10="urn:schemas-microsoft-com:office:word"
+			xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+			xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml"
+			xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml"
+			xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid"
+			xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex"
+			xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup"
+			xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk"
+			xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
+			xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 w16se w16cid wp14">
+			<w:tbl>
+				<w:tblPr>
+					<w:tblStyle w:val="ac"/>
+					<w:tblW w:w="0" w:type="auto"/>
+					<w:tblBorders>
+						<w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+						<w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+						<w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+						<w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+						<w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+						<w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+					</w:tblBorders>
+					<w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+				</w:tblPr>
+				<w:tblGrid>
+					<w:gridCol w:w="1980"/>
+					<w:gridCol w:w="3685"/>
+					<w:gridCol w:w="1418"/>
+					<w:gridCol w:w="2659"/>
+				</w:tblGrid>
+				<w:tr w:rsidR="001A322F" w:rsidTr="001A322F">
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="5665" w:type="dxa"/>
+							<w:gridSpan w:val="2"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="001A322F">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+								<w:t>G.D. ENTERPRISE LIMITED</w:t>
+							</w:r>
+						</w:p>
+						<w:p w:rsidR="001A322F" w:rsidRPr="00C45B49" w:rsidRDefault="001A322F" w:rsidP="001A322F">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="15"/>
+									<w:szCs w:val="15"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="00C45B49">
+								<w:rPr>
+									<w:rFonts w:hint="eastAsia"/>
+									<w:sz w:val="15"/>
+									<w:szCs w:val="15"/>
+								</w:rPr>
+								<w:t xml:space="preserve">THE FINANCIAL SERVICES CENTRE P.O. BOX 1823, </w:t>
+							</w:r>
+						</w:p>
+						<w:p w:rsidR="001A322F" w:rsidRPr="00C45B49" w:rsidRDefault="001A322F" w:rsidP="001A322F">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="15"/>
+									<w:szCs w:val="15"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="00C45B49">
+								<w:rPr>
+									<w:rFonts w:hint="eastAsia"/>
+									<w:sz w:val="15"/>
+									<w:szCs w:val="15"/>
+								</w:rPr>
+								<w:t>PAUL</w:t>
+							</w:r>
+							<w:r w:rsidRPr="00C45B49">
+								<w:rPr>
+									<w:sz w:val="15"/>
+									<w:szCs w:val="15"/>
+								</w:rPr>
+								<w:t xml:space="preserve">’S AVENUE, KINGSTOWN, ST. VINCENT &amp; THE </w:t>
+							</w:r>
+						</w:p>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:rFonts w:hint="eastAsia"/>
+									<w:sz w:val="15"/>
+									<w:szCs w:val="15"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="00C45B49">
+								<w:rPr>
+									<w:sz w:val="15"/>
+									<w:szCs w:val="15"/>
+								</w:rPr>
+								<w:t>GRENADINES</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1418" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+							</w:pPr>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="2659" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+							</w:pPr>
+						</w:p>
+					</w:tc>
+				</w:tr>
+				<w:tr w:rsidR="001A322F" w:rsidTr="001A322F">
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="9742" w:type="dxa"/>
+							<w:gridSpan w:val="4"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="001A322F">
+							<w:pPr>
+								<w:jc w:val="center"/>
+								<w:rPr>
+									<w:b/>
+									<w:sz w:val="26"/>
+									<w:szCs w:val="26"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:b/>
+									<w:sz w:val="26"/>
+									<w:szCs w:val="26"/>
+								</w:rPr>
+								<w:t>PACKING LIST</w:t>
+							</w:r>
+						</w:p>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="001A322F">
+							<w:pPr>
+								<w:jc w:val="center"/>
+								<w:rPr>
+									<w:rFonts w:hint="eastAsia"/>
+									<w:b/>
+									<w:sz w:val="26"/>
+									<w:szCs w:val="26"/>
+								</w:rPr>
+							</w:pPr>
+						</w:p>
+					</w:tc>
+				</w:tr>
+				<w:tr w:rsidR="001A322F" w:rsidTr="001A322F">
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1980" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>INVOICE NO.</w:t>
+							</w:r>
+							<w:r>
+								<w:rPr>
+									<w:rFonts w:hint="eastAsia"/>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="3685" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_invoice_no*****</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1418" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>DATE:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="2659" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="32"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>25</w:t>
+							</w:r>
+							<w:r w:rsidRPr="00AB2267">
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:vertAlign w:val="superscript"/>
+								</w:rPr>
+								<w:t>th</w:t>
+							</w:r>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t xml:space="preserve"> Jul, 2018</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:bookmarkStart w:id="0" w:name="_GoBack"/>
+					<w:bookmarkEnd w:id="0"/>
+				</w:tr>
+				<w:tr w:rsidR="001A322F" w:rsidTr="001A322F">
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1980" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>CUSTOMER P.O. NO.:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="3685" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_buyer_no*****</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1418" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="0098583B">
+								<w:rPr>
+									<w:rFonts w:hint="eastAsia"/>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>SHIPPED PER:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="2659" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_vslvoy*****</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+				</w:tr>
+				<w:tr w:rsidR="001A322F" w:rsidTr="001A322F">
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1980" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="001A322F">
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+								<w:t>SHIP TO:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="3685" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="001A322F">
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_ship_name*****</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1418" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="005D0CFC">
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+								<w:t>FROM</w:t>
+							</w:r>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+								<w:t>:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="2659" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_exp_port*****</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+				</w:tr>
+				<w:tr w:rsidR="001A322F" w:rsidTr="001A322F">
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1980" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="3685" w:type="dxa"/>
+							<w:vMerge w:val="restart"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r w:rsidRPr="001A322F">
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_ship_address*****</w:t>
+							</w:r>
+							<w:r w:rsidRPr="001A322F">
+								<w:rPr>
+									<w:rFonts w:hint="eastAsia"/>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+								<w:t xml:space="preserve"></w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1418" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>TO:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="2659" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_destination*****</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+				</w:tr>
+				<w:tr w:rsidR="001A322F" w:rsidTr="001A322F">
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1980" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="3685" w:type="dxa"/>
+							<w:vMerge/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRPr="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+									<w:szCs w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="1418" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>SAILING ON:</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+					<w:tc>
+						<w:tcPr>
+							<w:tcW w:w="2659" w:type="dxa"/>
+						</w:tcPr>
+						<w:p w:rsidR="001A322F" w:rsidRDefault="001A322F" w:rsidP="0098583B">
+							<w:pPr>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+							</w:pPr>
+							<w:r>
+								<w:rPr>
+									<w:sz w:val="20"/>
+								</w:rPr>
+								<w:t>*****custrecord_sailing_date*****</w:t>
+							</w:r>
+						</w:p>
+					</w:tc>
+				</w:tr>
+			</w:tbl>
+			<w:p w:rsidR="00041328" w:rsidRPr="00EC1991" w:rsidRDefault="00041328" w:rsidP="0098583B">
+				<w:pPr>
+					<w:pBdr>
+						<w:bottom w:val="single" w:sz="4" w:space="1" w:color="auto"/>
+					</w:pBdr>
+					<w:rPr>
+						<w:sz w:val="2"/>
+					</w:rPr>
+				</w:pPr>
+			</w:p>
+		</w:hdr>
+	</pkg:xmlData>
+</pkg:part>

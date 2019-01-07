@@ -1,0 +1,19 @@
+<w:p w:rsidR="00162613" w:rsidRDefault="0098583B" w:rsidP="00104D7B">
+	<w:pPr>
+		<w:ind w:first-line="480"/>
+		<w:rPr>
+			<w:b/>
+			<w:sz w:val="20"/>
+			<w:u w:val="single"/>
+		</w:rPr>
+	</w:pPr>
+	<w:r>
+		<w:rPr>
+			<w:rFonts w:hint="fareast"/>
+			<w:b/>
+			<w:sz w:val="20"/>
+			<w:u w:val="single"/>
+		</w:rPr>
+		<w:t>AS PER P.O. NO.: ***custrecord_buyer_no***</w:t>
+	</w:r>
+</w:p>
