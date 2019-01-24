@@ -6,6 +6,7 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
 
     function (record, search, message, common) {
         debugger
+        showMessage("訊息", "2019-01-22更新");
         //訊息顯示
         /**
          * @description 訊息顯示
@@ -174,22 +175,21 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
             //#endregion
             //#region 欄位檢核
             //#region 補充
-            //TODO:待確認
             //#region 當課稅別為「應稅」時，折讓稅額 = 折讓金額 * 0.05
-            // if (sublistFieldName === "custrecord_3_tax_code"
-            //     || sublistFieldName === "custrecord_3_sales_amt") {
-            //     if ($txtAllowanceAmount
-            //         && $ddlTaxCode) {
-            //         var vTaxation = getLookupCode($ddlTaxCode);
-            //         if (vTaxation == "1") {
-            //             currentRecord.setValue({
-            //                 fieldId: 'custrecord_3_vat_io',
-            //                 value: $txtAllowanceAmount * 0.05,
-            //                 ignoreFieldChange: true
-            //             });
-            //         }
-            //     }
-            // }
+            if (sublistFieldName === "custrecord_3_tax_code"
+                || sublistFieldName === "custrecord_3_sales_amt") {
+                if ($txtAllowanceAmount
+                    && $ddlTaxCode) {
+                    var vTaxation = getLookupCode($ddlTaxCode);
+                    if (vTaxation == "1") {
+                        currentRecord.setValue({
+                            fieldId: 'custrecord_3_vat_io',
+                            value: $txtAllowanceAmount * 0.05,
+                            ignoreFieldChange: true
+                        });
+                    }
+                }
+            }
             //#endregion
             //#endregion
 
