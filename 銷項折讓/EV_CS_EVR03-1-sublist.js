@@ -9,7 +9,8 @@ define(['N/record', 'N/search', 'N/ui/message'],
 
         debugger
         showMessage("訊息", "銷項折讓明細：2019-01-28更新");
-        
+
+        //#region 共用Function
         //訊息顯示
         /**
          * @description 訊息顯示
@@ -32,7 +33,7 @@ define(['N/record', 'N/search', 'N/ui/message'],
         /**
          * @description 取得：下拉List選單(格式別 | 課稅別 | 扣抵代號)的value
          * @param {string} options 下拉選單值
-         * @return {string} 回傳LookupCode
+         * @returns {string} 回傳LookupCode
          */
         function getLookupCode(options) {
             var vLookupCode = "";
@@ -59,6 +60,17 @@ define(['N/record', 'N/search', 'N/ui/message'],
         }
 
         /**
+         * @description 檢查：是否為數字(是：回傳原值；否：回傳0)
+         * @param {stirng} value 欲檢查值
+         * @returns {any} 
+         */
+        function toNum(value) {
+            return isNaN(value) == false ? value : 0;
+        }
+
+        //#endregion
+
+        /**
          * @description 2.2.2 銷項折讓明細→欄位檢核
          * @param {any} context 
          */
@@ -72,35 +84,21 @@ define(['N/record', 'N/search', 'N/ui/message'],
 
             /** @description 格式別(下拉)；
              *  @returns Text */
-            var $ddlFormatType = currentRecord.getText({
-                fieldId: 'custrecord_3_format_type'
-            });
+            var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
 
             /**@description 折讓日期(日期格式) */
-            var $txtAllowanceDate = currentRecord.getValue({
-                fieldId: 'custrecord_3_gui_date'
-            });
+            var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
 
-            /** @description  銷項折讓明細*/
-            var $銷項折讓明細 = "recmachcustrecord_4_gui_id";
-            /** @description  憑證類別*/
-            var $憑證類別 = "custrecord_4_prev_gui_type";
-            /** @description  憑證號碼*/
-            var $憑證號碼 = "custrecord_4_prev_gui_id";
-            /** @description  憑證日期*/
-            var $憑證日期 = "custrecord_4_gui_date_x";
-            /** @description  憑證金額*/
-            var $憑證金額 = "custrecord_4_gui_sales_amt_x";
-            /** @description  憑證稅額*/
-            var $憑證稅額 = "custrecord_4_gui_vat_io_x";
-            /** @description  已折讓金額*/
-            var $已折讓金額 = "custrecord_4_cm_gui_line_amount_x";
-            /** @description  已折讓稅額*/
-            var $已折讓稅額 = "custrecord_4_cm_gui_tax_amount_x";
-            /** @description  折讓金額*/
-            var $折讓金額 = "custrecord_4_line_ntd_amount";
-            /** @description  折讓稅額*/
-            var $折讓稅額 = "custrecord_4_tax_ntd_amount";
+            /** @description  銷項折讓明細*/ var $銷項折讓明細 = "recmachcustrecord_4_gui_id";
+            /** @description  憑證類別*/ var $憑證類別 = "custrecord_4_prev_gui_type";
+            /** @description  憑證號碼*/ var $憑證號碼 = "custrecord_4_prev_gui_id";
+            /** @description  憑證日期*/ var $憑證日期 = "custrecord_4_gui_date_x";
+            /** @description  憑證金額*/ var $憑證金額 = "custrecord_4_gui_sales_amt_x";
+            /** @description  憑證稅額*/ var $憑證稅額 = "custrecord_4_gui_vat_io_x";
+            /** @description  已折讓金額*/ var $已折讓金額 = "custrecord_4_cm_gui_line_amount_x";
+            /** @description  已折讓稅額*/ var $已折讓稅額 = "custrecord_4_cm_gui_tax_amount_x";
+            /** @description  折讓金額*/ var $折讓金額 = "custrecord_4_line_ntd_amount";
+            /** @description  折讓稅額*/ var $折讓稅額 = "custrecord_4_tax_ntd_amount";
 
             //銷項折讓明細
             if (sublistName === $銷項折讓明細) {
@@ -269,6 +267,7 @@ define(['N/record', 'N/search', 'N/ui/message'],
                     }
                 }
                 //#endregion
+
                 //#region 2.2.2.2 折讓金額
                 if (sublistFieldName === $折讓金額) {
                     //#region 2.2.2.2.1 折讓金額為0
@@ -280,39 +279,30 @@ define(['N/record', 'N/search', 'N/ui/message'],
                     //#region 2.2.2.2.2 折讓金額 + 已折讓金額於金額
                     //已折讓金額
                     //var Discounted_amt = currentRecord.getValue("custrecord_13_cm_gui_line_amount");                       
-                    var vDiscounted_amt = currentRecord.getCurrentSublistValue({
+                    var v已折讓金額 = toNum(currentRecord.getCurrentSublistValue({
                         sublistId: sublistName,
                         fieldId: $已折讓金額,
                         line: line
-                    });
+                    }));
 
                     //憑證金額
-                    var vSales_amt = currentRecord.getValue($憑證金額);
+                    var v憑證金額 = toNum(currentRecord.getValue($憑證金額));
 
-                    // if (isNaN(Discounted_amt))
-                    //     Discounted_amt = 0;
-                    // if (isNaN(sales_amt))
-                    //     sales_amt = 0;
-                    vDiscounted_amt = vDiscounted_amt && isNaN(vDiscounted_amt) == false ? vDiscounted_amt : 0;
-                    vSales_amt = vSales_amt && isNaN(vSales_amt) == false ? vSales_amt : 0;
-
-                    if ((FieldValue + vDiscounted_amt) > vSales_amt) {
+                    if ((toNum(FieldValue) + v已折讓金額) > v憑證金額) {
                         showMessage("系統訊息", "折讓金額已超折");
                     }
                     //#endregion
                 }
                 //#endregion
+
                 //#region 2.2.2.3 折讓稅額
                 if (sublistFieldName === $折讓稅額) {
                     //已折讓稅額
-                    var tax_amt = currentRecord.getValue($已折讓稅額);
+                    var v已折讓稅額 = toNum(currentRecord.getValue($已折讓稅額));
                     //憑證稅額  
-                    var vat_io = currentRecord.getValue($憑證稅額);
-                    if (isNaN(tax_amt))
-                        tax_amt = 0;
-                    if (isNaN(vat_io))
-                        vat_io = 0;
-                    if ((FieldValue + tax_amt) > vat_io) {
+                    var v憑證稅額 = toNum(currentRecord.getValue($憑證稅額));
+                    
+                    if ((toNum(FieldValue) + v已折讓稅額) > v憑證稅額) {
                         showMessage("系統訊息", currentRecord.getValue($憑證號碼) + "折讓稅額已超折");
                     }
                 }

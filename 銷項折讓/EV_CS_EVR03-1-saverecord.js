@@ -9,8 +9,11 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
         debugger
         showMessage("訊息", "銷項折讓資訊-存檔前檢核：2019-01-28更新");
 
+        //#region 共用變數
         /**@description 錯誤訊息 */ var vErrMsg = "";
+        //#endregion
 
+        //#region 共用Function
         //訊息顯示
         /**
          * @description 訊息顯示
@@ -33,7 +36,7 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
         /**
          * @description 取得：下拉List選單(格式別 | 課稅別 | 扣抵代號)的value
          * @param {string} options 下拉選單值
-         * @return {string} 回傳LookupCode
+         * @returns {string} 回傳LookupCode
          */
         function getLookupCode(options) {
             var vLookupCode = "";
@@ -59,6 +62,80 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
             return vLookupCode;
         }
 
+        //檢核：統一編號
+        /**
+         * @description 檢核：統一編號
+         * @param {stirng} taxId 統一編號
+         * @returns {boolean} true:檢核成功；false:檢核失敗
+         */
+        function isValidGUI(taxId) {
+            var invalidList = "00000000,11111111";
+            if (/^\d{8}$/.test(taxId) == false || invalidList.indexOf(taxId) != -1) {
+                return false;
+            }
+
+            var validateOperator = [1, 2, 1, 2, 1, 2, 4, 1],
+                sum = 0,
+                calculate = function (product) { // 個位數 + 十位數
+                    var ones = product % 10,
+                        tens = (product - ones) / 10;
+                    return ones + tens;
+                };
+            for (var i = 0; i < validateOperator.length; i++) {
+                sum += calculate(taxId[i] * validateOperator[i]);
+            }
+
+            return sum % 10 == 0 || (taxId[6] == "7" && (sum + 1) % 10 == 0);
+        };
+
+        /**
+         * @description 檢查：字軌；前2碼為英文大寫
+         * @param {stirng} value 統一發票
+         * @returns {boolean} true:檢核成功；false:檢核失敗
+         */
+        function checkWordTrack(value) {
+            var isCheck = true;
+            for (var i = 0; i < 2; i++) {
+                if (!isCheck) break;
+                else {
+                    if (value.substring(i, i + 1).match(/^.*[^A-Z]+.*$/) == null) {
+                        isCheck = false;
+                    }
+                }
+            }
+            return isCheck;
+        }
+
+        /**
+         * @description 檢查：發票號碼數字
+         * @param {stirng} value 統一發票
+         * @returns {boolean} true:檢核成功；false:檢核失敗
+         */
+        function checkInvoiceNum(value) {
+            var isCheck = true;
+            for (var i = 2; i < 10; i++) {
+                if (!isCheck) break;
+                else {
+                    if (isNaN(FieldValue.substring(i, i + 1))) {
+                        isCheck = false;
+                    }
+                }
+            }
+            return isCheck;
+        }
+
+        /**
+         * @description 檢查：是否為數字(是：回傳原值；否：回傳0)
+         * @param {stirng} value 欲檢查值
+         * @returns {any} 
+         */
+        function toNum(value) {
+            return isNaN(value) == false ? value : 0;
+        }
+
+        //#endregion
+
+        //#region 欄位檢核
         /**
          * @description 欄位檢核：銷項折讓資訊
          * @param {any} context 
@@ -71,84 +148,44 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
             var line = context.line;
             var searchResultCount = -1;
             //#region 取得：欄位資料[基本資料]
-            /**@description 稅籍編號(下拉) @returns Text */
-            var $ddlTaxNumber = currentRecord.getText({
-                fieldId: 'custrecord_3_registration_number'
-            });
-            /**@description 稅籍編號(下拉) @returns Value */
-            var $ddlTaxNumberVal = currentRecord.getValue({
-                fieldId: 'custrecord_3_registration_number'
-            });
-            /** @description 折讓簿冊別(下拉) @returns Text */
-            var $ddlAllowanceBookId = currentRecord.getText({
-                fieldId: 'custrecord_3_gui_book_id'
-            });
+            /**@description 稅籍編號(下拉) */
+            var $ddlTaxNumber = currentRecord.getText({ fieldId: 'custrecord_3_registration_number' });
+            /**@description 稅籍編號(下拉) */
+            var $ddlTaxNumberVal = currentRecord.getValue({ fieldId: 'custrecord_3_registration_number' });
+            /** @description 折讓簿冊別(下拉) */
+            var $ddlAllowanceBookId = currentRecord.getText({ fieldId: 'custrecord_3_gui_book_id' });
             /**@description 折讓單號 */
-            var $txtAllowanceNumber = currentRecord.getValue({
-                fieldId: 'custrecord_3_other_desc'
-            });
-            /** @description 格式別(下拉)；
-             *  @summary 
-             *  33：
-             *  34：
-             *  @returns Text */
-            var $ddlFormatType = currentRecord.getText({
-                fieldId: 'custrecord_3_format_type'
-            });
-            /** @description 課稅別(下拉)；
-             *  @summary 1：應稅 2：零稅率 3：免稅
-             *  @returns Text */
-            var $ddlTaxCode = currentRecord.getText({
-                fieldId: 'custrecord_3_tax_code'
-            });
+            var $txtAllowanceNumber = currentRecord.getValue({ fieldId: 'custrecord_3_other_desc' });
+            /** @description 格式別(下拉) */
+            var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
+            /** @description 課稅別(下拉) */
+            var $ddlTaxCode = currentRecord.getText({ fieldId: 'custrecord_3_tax_code' });
             //-------------------------------------------------------
             /**@description 折讓日期(日期格式) */
-            var $txtAllowanceDate = currentRecord.getValue({
-                fieldId: 'custrecord_3_gui_date'
-            });
+            var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
             /**@description 所屬年 */
-            var $txtOwnYear = currentRecord.getValue({
-                fieldId: 'custrecord_3_occured_year'
-            });
+            var $txtOwnYear = currentRecord.getValue({ fieldId: 'custrecord_3_occured_year' });
             /**@description 所屬月 */
-            var $txtOwnMonth = currentRecord.getValue({
-                fieldId: 'custrecord_3_occured_month'
-            });
+            var $txtOwnMonth = currentRecord.getValue({ fieldId: 'custrecord_3_occured_month' });
             /**@description 折讓金額 */
-            var $txtAllowanceAmount = currentRecord.getValue({
-                fieldId: 'custrecord_3_sales_amt'
-            });
+            var $txtAllowanceAmount = currentRecord.getValue({ fieldId: 'custrecord_3_sales_amt' });
             /**@description 折讓稅額 */
-            var $txtAllowanceTax = currentRecord.getValue({
-                fieldId: 'custrecord_3_vat_io'
-            });
+            var $txtAllowanceTax = currentRecord.getValue({ fieldId: 'custrecord_3_vat_io' });
             //-------------------------------------------------------
             /**@description 備註 */
-            var $txtRemarks = currentRecord.getValue({
-                fieldId: 'custrecord_3_remarks_columns'
-            });
+            var $txtRemarks = currentRecord.getValue({ fieldId: 'custrecord_3_remarks_columns' });
             /**@description 狀態 */
-            var $txtStatus = currentRecord.getValue({
-                fieldId: 'custrecord_3_approved_flag'
-            });
+            var $txtStatus = currentRecord.getValue({ fieldId: 'custrecord_3_approved_flag' });
             /**@description APPROVED_BY */
-            var $txtApprovedBy = currentRecord.getValue({
-                fieldId: 'custrecord_3_approved_by'
-            });
+            var $txtApprovedBy = currentRecord.getValue({ fieldId: 'custrecord_3_approved_by' });
             /**@description 開立人員 */
-            var $txtOpenStaff = currentRecord.getValue({
-                fieldId: 'custrecord_3_created_by'
-            });
+            var $txtOpenStaff = currentRecord.getValue({ fieldId: 'custrecord_3_created_by' });
             //#endregion
             //#region 取得：欄位資料[客戶資訊]
-            /** @description 客戶名稱(下拉) @returns Text */
-            var $ddlCustomerName = currentRecord.getText({
-                fieldId: 'custrecord_3_customer_name'
-            });
+            /** @description 客戶名稱(下拉) */
+            var $ddlCustomerName = currentRecord.getText({ fieldId: 'custrecord_3_customer_name' });
             /**@description 客戶統編 */
-            var $txtCustomerUniform = currentRecord.getValue({
-                fieldId: 'custrecord_3_buyer_no'
-            });
+            var $txtCustomerUniform = currentRecord.getValue({ fieldId: 'custrecord_3_buyer_no' });
             //#endregion
             //#region 銷項折讓資訊-欄位檢核
             //#region 2.1.2.1 折讓簿冊別/折讓日期
@@ -238,7 +275,7 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
          * @param {any} context 
          */
         function validateSublist(context) {
-            var vErrMsg = "";
+            /** @description 錯誤訊息 */ var vErrMsg = "";
             var currentRecord = context.currentRecord;
             //var sublistName = context.sublistId;
             //var sublistFieldName = context.fieldId;
@@ -246,71 +283,54 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
 
 
             //#region 取得：欄位資料[基本資料]
-            /** @description 格式別(下拉)；
-             *  @returns Text */
-            var $ddlFormatType = currentRecord.getText({
-                fieldId: 'custrecord_3_format_type'
-            });
-
-            /**@description 折讓日期(日期格式) */
-            var $txtAllowanceDate = currentRecord.getValue({
-                fieldId: 'custrecord_3_gui_date'
-            });
+            /** @description 格式別(下拉) */
+            var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
+            /** @description 折讓日期(日期格式) */
+            var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
             //#endregion
             //#region 取得：銷項折讓明細欄位資料
-            /** @description  銷項折讓明細*/
-            var $銷項折讓明細 = "recmachcustrecord_4_gui_id";
-            /** @description  憑證類別*/
-            var $憑證類別 = "custrecord_4_prev_gui_type";
-            /** @description  憑證號碼*/
-            var $憑證號碼 = "custrecord_4_prev_gui_id";
-            /** @description  憑證日期*/
-            var $憑證日期 = "custrecord_4_gui_date_x";
-            /** @description  憑證金額*/
-            var $憑證金額 = "custrecord_4_gui_sales_amt_x";
-            /** @description  憑證稅額*/
-            var $憑證稅額 = "custrecord_4_gui_vat_io_x";
-            /** @description  已折讓金額*/
-            var $已折讓金額 = "custrecord_4_cm_gui_line_amount_x";
-            /** @description  已折讓稅額*/
-            var $已折讓稅額 = "custrecord_4_cm_gui_tax_amount_x";
-            /** @description  折讓金額*/
-            var $折讓金額 = "custrecord_4_line_ntd_amount";
-            /** @description  折讓稅額*/
-            var $折讓稅額 = "custrecord_4_tax_ntd_amount";
+            /** @description  銷項折讓明細*/ var $銷項折讓明細 = "recmachcustrecord_4_gui_id";
+            /** @description  憑證類別*/ var $憑證類別 = "custrecord_4_prev_gui_type";
+            /** @description  憑證號碼*/ var $憑證號碼 = "custrecord_4_prev_gui_id";
+            /** @description  憑證日期*/ var $憑證日期 = "custrecord_4_gui_date_x";
+            /** @description  憑證金額*/ var $憑證金額 = "custrecord_4_gui_sales_amt_x";
+            /** @description  憑證稅額*/ var $憑證稅額 = "custrecord_4_gui_vat_io_x";
+            /** @description  已折讓金額*/ var $已折讓金額 = "custrecord_4_cm_gui_line_amount_x";
+            /** @description  已折讓稅額*/ var $已折讓稅額 = "custrecord_4_cm_gui_tax_amount_x";
+            /** @description  折讓金額*/ var $折讓金額 = "custrecord_4_line_ntd_amount";
+            /** @description  折讓稅額*/ var $折讓稅額 = "custrecord_4_tax_ntd_amount";
             //#endregion
-            //進項發票資訊的sublist數
-            var LineCount = currentRecord.getLineCount({ "sublistId": $銷項折讓明細 });
-            for (var i = 0; i < LineCount; i++) {
-                var orgRecord = null; //原本的的資料
+            /** @description  進項發票資訊的sublist數*/
+            var vLineCount = currentRecord.getLineCount({ "sublistId": $銷項折讓明細 });
+            for (var i = 0; i < vLineCount; i++) {
+                /** @description  原本的的資料*/var orgRecord = null;
                 var id = currentRecord.getSublistValue({
                     sublistId: $銷項折讓明細,
                     fieldId: "id",
                     line: i
                 });
-                if (id != "") {
+                if (id) {
                     orgRecord = record.load({
-                        type: "customrecord_ev_pay_invoices_all",
+                        type: "customrecord_ev_pay_invoices_all(待補)",
                         id: id,
                         isDynamic: true,
                     });
                 };
 
-                var sales_no = currentRecord.getSublistValue({   //統一編號
-                    sublistId: trxn_noID,
-                    fieldId: sales_noID,
+                //#region 2.2.2.1 憑證號碼
+                /** @description  憑證號碼*/
+                var v憑證號碼 = currentRecord.getSublistValue({
+                    sublistId: $銷項折讓明細,
+                    fieldId: $憑證號碼,
                     line: i
                 });
-
-                //#region 2.2.2.1 憑證號碼
-                if (sublistFieldName === $憑證號碼) {
-                    if (FieldValue == "") { return true; }
+                if (v憑證號碼) {
                     //#region 取得：銷項發票明細資料
                     var salesInvoiceSearchObj = search.create({
                         type: "customrecord_ev_rec_invoice_lines_all",
                         filters:
                             [
-                                ["id", "equalto", FieldValue]
+                                ["id", "equalto", v憑證號碼]
                             ],
                         columns:
                             [
@@ -322,139 +342,275 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
                             ]
                     });
                     var searchResultCount = salesInvoiceSearchObj.runPaged().count;
-                    log.debug("customrecord_ev_rec_invoice_lines_allSearchObj result count", searchResultCount);
-                    salesInvoiceSearchObj.run().each(function (result) {
-                        // .run().each has a limit of 4,000 results
-                        return true;
-                    });
                     //#endregion
-                    //#region 2.2.2.1.1 若憑證號碼不存在
+
                     if (searchResultCount == 0) {
-                        showMessage("系統訊息", "此憑證號碼不存在");
-                        return true;
+                        //#region 2.2.2.1.1 若憑證號碼不存在
+                        vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，此憑證號碼不存在\n";
+                        //#endregion
                     }
-                    //#endregion
-                    else {
-                        //取得：格式別
-                        var vFormat = "";
+                    else {//憑證號碼存在
+                        /** @description  格式別*/ var vFormat = "";
                         if ($ddlFormatType) {
                             vFormat = getLookupCode($ddlFormatType);
                         }
-
                         if (vFormat == "33") {
                             //#region 2.2.2.1.2 若銷項資訊格為別為33，且憑類別為零稅率時(待確認)
                             //Lori回覆看不懂
-                            var v憑證類別 = currentRecord.getCurrentSublistValue({
-                                sublistId: sublistName,
+                            /** @description  憑證類別*/
+                            var v憑證類別 = currentRecord.getSublistValue({
+                                sublistId: $銷項折讓明細,
                                 fieldId: $憑證類別,
-                                line: line
+                                line: i
                             });
                             if (v憑證類別 && v憑證類別 == "零稅率") {
-                                showMessage("訊息", "格式33其折讓對象必須為統一發票");
-                                return true;
+                                vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，格式33其折讓對象必須為統一發票\n";
                             }
                             //#endregion
                             //#region 2.2.2.1.3 若銷項資訊格式別為33，且憑號碼為空時
-                            if (!FieldValue) {
-                                showMessage("訊息", "格式33必須有折讓對象");
-                                return true;
+                            if (!v憑證號碼) {
+                                vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，格式33必須有折讓對象\n";
                             }
                             //#endregion
                         }
 
-                        if (FieldValue.length != 10) {
+                        if (v憑證號碼.length != 10) {
                             //#region 2.2.2.1.4 長度<>10碼
-                            showMessage("系統訊息", "發票號碼長度有誤(10碼)");
-                            return true;
+                            vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，發票號碼長度有誤(10碼)\n";
                             //#endregion 
                         }
                         else {
                             //#region 2.2.2.1.5 前2碼須為大寫英文
-                            for (var i = 0; i < 2; i++) {
-                                if (FieldValue.substring(i, i + 1).match(/^.*[^A-Z]+.*$/) == null) {
-
-                                    showMessage("系統訊息", "字軌錯誤");
-                                    return true;
-                                }
+                            if (checkWordTrack(v憑證號碼) == false) {
+                                vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，字軌錯誤\n";
                             }
                             //#endregion
                             //#region 2.2.2.1.6 後8碼應為數字
-                            for (var i = 2; i < 10; i++) {
-                                if (isNaN(FieldValue.substring(i, i + 1))) {
-
-                                    showMessage("系統訊息", "發票號碼數字部份錯誤");
-                                    return true;
-                                }
+                            if (checkInvoiceNum(v憑證號碼) == false) {
+                                vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，發票號碼數字部份錯誤\n";
                             }
-                            //#endregion
+                            //#endregion                            
                         }
-
                         //#region 2.2.2.1.7 憑證的憑證日期 > 銷項折讓日期
-                        //憑證日期；可能需要轉日期格式
-                        var vInvoiceDate = currentRecord.getValue($憑證日期);
+                        /** @description  憑證日期；日期格式*/
+                        var vInvoiceDate = currentRecord.getSublistValue({
+                            sublistId: $銷項折讓明細,
+                            fieldId: $憑證日期,
+                            line: i
+                        });
                         if (vInvoiceDate && $txtAllowanceDate) {
                             if (vInvoiceDate > $txtAllowanceDate) {
-                                showMessage("系統訊息", "此發票號碼之發票日期不能大於折讓日期，請檢核");
-                                return true;
+                                vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，此發票號碼之發票日期不能大於折讓日期，請檢核\n";
                             }
                         }
                         //#endregion
+
                     }
                 }
                 //#endregion
+
                 //#region 2.2.2.2 折讓金額
-                if (sublistFieldName === $折讓金額) {
+                /** @description  折讓金額*/
+                var v折讓金額 = toNum(currentRecord.getSublistValue({
+                    sublistId: $銷項折讓明細,
+                    fieldId: $折讓金額,
+                    line: i
+                }));
+
+                if (v折讓金額) {
                     //#region 2.2.2.2.1 折讓金額為0
-                    if (FieldValue == 0) {
-                        showMessage("系統訊息", "折讓金額不得為0");
-                        return true;
+                    if (v折讓金額 == 0) {
+                        vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，折讓金額不得為0\n";
                     }
                     //#endregion
                     //#region 2.2.2.2.2 折讓金額 + 已折讓金額於金額
-                    //已折讓金額
-                    //var Discounted_amt = currentRecord.getValue("custrecord_13_cm_gui_line_amount");                       
-                    var vDiscounted_amt = currentRecord.getCurrentSublistValue({
-                        sublistId: sublistName,
+                    /** @description  已折讓金額*/
+                    var v已折讓金額 = toNum(currentRecord.getSublistValue({
+                        sublistId: $銷項折讓明細,
                         fieldId: $已折讓金額,
-                        line: line
-                    });
+                        line: i
+                    }));
 
-                    //憑證金額
-                    var vSales_amt = currentRecord.getValue($憑證金額);
-                    vDiscounted_amt = vDiscounted_amt && isNaN(vDiscounted_amt) == false ? vDiscounted_amt : 0;
-                    vSales_amt = vSales_amt && isNaN(vSales_amt) == false ? vSales_amt : 0;
+                    /** @description  憑證金額*/
+                    var v憑證金額 = toNum(currentRecord.getSublistValue({
+                        sublistId: $銷項折讓明細,
+                        fieldId: $憑證金額,
+                        line: i
+                    }));
 
-                    if ((FieldValue + vDiscounted_amt) > vSales_amt) {
-                        showMessage("系統訊息", "折讓金額已超折");
+                    if ((v折讓金額 + v已折讓金額) > v憑證金額) {
+                        vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，折讓金額已超折\n";
                     }
                     //#endregion
                 }
                 //#endregion
+
                 //#region 2.2.2.3 折讓稅額
-                //已折讓稅額
-                var tax_amt = currentRecord.getValue($已折讓稅額);
-                //憑證稅額  
-                var vat_io = currentRecord.getValue($憑證稅額);
-                if (isNaN(tax_amt))
-                    tax_amt = 0;
-                if (isNaN(vat_io))
-                    vat_io = 0;
-                if ((FieldValue + tax_amt) > vat_io) {
-                    showMessage("系統訊息", currentRecord.getValue($憑證號碼) + "折讓稅額已超折");
+                /** @description  折讓稅額*/
+                var v折讓稅額 = toNum(currentRecord.getSublistValue({
+                    sublistId: $銷項折讓明細,
+                    fieldId: $折讓稅額,
+                    line: i
+                }));
+
+                if (v折讓稅額) {
+                    /** @description  已折讓稅額*/
+                    var v已折讓稅額 = toNum(currentRecord.getSublistValue({
+                        sublistId: $銷項折讓明細,
+                        fieldId: $已折讓稅額,
+                        line: i
+                    }));
+
+                    /** @description  憑證稅額*/
+                    var v憑證稅額 = toNum(currentRecord.getSublistValue({
+                        sublistId: $銷項折讓明細,
+                        fieldId: $憑證稅額,
+                        line: i
+                    }));
+
+                    if ((v折讓稅額 + v已折讓稅額) > v憑證稅額) {
+                        vErrMsg += "銷項折讓明細第" + (i + 1).toString() + "筆資料，折讓稅額已超折\n";
+                    }
                 }
                 //#endregion
 
-
-
-            }
-
-            
-
-
-
+            }//For End
 
             return vErrMsg;
         }
+
+        /**
+         * @description 欄位檢核：2-3
+         * @param {any} context 
+         */
+        function validate(context) {
+            //#region 取得：銷項折讓明細欄位資料
+            /** @description  銷項折讓明細*/ var $銷項折讓明細 = "recmachcustrecord_4_gui_id";
+            /** @description  憑證類別*/ var $憑證類別 = "custrecord_4_prev_gui_type";
+            /** @description  憑證號碼*/ var $憑證號碼 = "custrecord_4_prev_gui_id";
+            /** @description  憑證日期*/ var $憑證日期 = "custrecord_4_gui_date_x";
+            /** @description  憑證金額*/ var $憑證金額 = "custrecord_4_gui_sales_amt_x";
+            /** @description  憑證稅額*/ var $憑證稅額 = "custrecord_4_gui_vat_io_x";
+            /** @description  已折讓金額*/ var $已折讓金額 = "custrecord_4_cm_gui_line_amount_x";
+            /** @description  已折讓稅額*/ var $已折讓稅額 = "custrecord_4_cm_gui_tax_amount_x";
+            /** @description  折讓金額*/ var $折讓金額 = "custrecord_4_line_ntd_amount";
+            /** @description  折讓稅額*/ var $折讓稅額 = "custrecord_4_tax_ntd_amount";
+            //#endregion
+            /** @description 錯誤訊息 */ var vErrMsg = "";
+            /** @description 原Record */var oRec = context.oldRecord;
+            /** @description 新Record */var nRec = context.newRecord;
+            var IsError = false;
+            var currentRecord = nRec;
+            //其他憑證(折讓單號)
+            nRec.setValue({
+                fieldId: 'custrecord_12_other_desc',
+                value: "other_desc"
+            });
+            if (nRec) {
+                // How many lines are on the Items sublist?
+                /** @description 銷項折讓明細的sublist數 */
+                var v銷項折讓明細數 = nRec.getLineCount({ "sublistId": $銷項折讓明細 });
+                /** @description 明細折讓金額總額 */
+                var v明細折讓金額總額 = 0;
+                /** @description 明細折讓稅額總額 */
+                var v明細折讓稅額總額 = 0;
+                var all_gui_no = '';
+                var all_gui_no_List = '';
+                if (v銷項折讓明細數 > 0) {
+                    for (var i = 0; i < v銷項折讓明細數; i++) {
+                        //銷項折讓明細的憑證號碼，有兩筆以上相同的話 秀錯誤訊息
+                        if (i < Math.round(v銷項折讓明細數 / 2)) {
+                            var display_I = currentRecord.getSublistValue({
+                                sublistId: $銷項折讓明細,//銷項折讓明細
+                                fieldId: $憑證號碼,//憑證號碼
+                                line: i
+                            });
+                            for (var j = i + 1; j < v銷項折讓明細數; j++) {
+                                var display_J = currentRecord.getSublistValue({
+                                    sublistId: $銷項折讓明細,//銷項折讓明細
+                                    fieldId: $憑證號碼,//憑證號碼
+                                    line: j
+                                });
+                                if (display_J == display_I) {
+                                    var err = error.create({
+                                        name: '無法修改',
+                                        message: '憑證號碼重複'
+                                    });
+                                    throw err.message;
+                                }
+                            }
+                        }
+                        /** @description 目前的憑證號碼 */
+                        var v目前的憑證號碼 = currentRecord.getSublistValue({
+                            sublistId: $銷項折讓明細,//銷項折讓明細
+                            fieldId: $憑證號碼,//憑證號碼
+                            line: i
+                        });
+
+                        /** @description 目前的折讓金額 */
+                        var v目前的折讓金額 = currentRecord.getSublistValue({
+                            sublistId: $銷項折讓明細,//銷項折讓明細
+                            fieldId: $折讓金額,//折讓金額
+                            line: i
+                        });
+                        v明細折讓金額總額 += v目前的折讓金額;
+
+                        /** @description 目前的折讓稅額 */
+                        var v目前的折讓稅額 = currentRecord.getSublistValue({
+                            sublistId: $銷項折讓明細,//銷項折讓明細
+                            fieldId: $折讓稅額,//折讓稅額
+                            line: i
+                        });
+                        v明細折讓稅額總額 += v目前的折讓稅額;
+
+                        // var unit_price = currentRecord.getSublistValue({
+                        // 	sublistId: 'recmachcustrecord_13_parent_id',//銷項折讓明細
+                        // 	fieldId: 'custrecord_13_unit_price',
+                        // 	line: i
+                        // });
+                        // totalPrice += unit_price;
+
+                        all_gui_no += v目前的憑證號碼 + "#";
+                        all_gui_no_List += v目前的憑證號碼 + "," + v目前的折讓金額 + "," + v目前的折讓稅額 + "#";
+                    }
+                    if (v明細折讓金額總額 == 0) {
+                        var err = error.create({
+                            name: '系統訊息',
+                            message: '折讓明細累計總額不得為0'
+                        });
+                        throw err.message;
+                    }
+
+                    /** @description 新的折讓金額 */
+                    var v新的折讓金額 = nRec.getValue($折讓金額);//折讓金額
+                    if (v明細折讓金額總額 != v新的折讓金額) {
+                        var err = error.create({
+                            name: '系統訊息',
+                            message: '折讓金額與折讓明細累計金額不符'
+                        });
+                        throw err.message;
+                    }
+
+                    /** @description 新的折讓稅額 */
+                    var v新的折讓稅額 = nRec.getValue($折讓稅額);//折讓稅額
+                    if (v明細折讓稅額總額 != v新的折讓稅額) {
+                        var err = error.create({
+                            name: '系統訊息',
+                            message: '折讓稅額與折讓明細累計稅額不符'
+                        });
+                        throw err.message;
+                    }
+                    all_gui_no = all_gui_no.substring(0, all_gui_no.length - 1)
+                    all_gui_no_List = all_gui_no_List.substring(0, all_gui_no_List.length - 1)
+                }
+
+                var gui_nos = all_gui_no.split("#");	//依憑證號碼回寫至進項發票資訊的已折讓金額及已折讓稅額
+                var gui_no_List = all_gui_no_List.split("#");
+
+            }
+            return vErrMsg;
+        }
+        //#endregion
 
         /**
          * @description 存檔前檢核
@@ -463,6 +619,7 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck', './commo
         function saveRecord(context) {
             var currentRecord = context.currentRecord;
             vErrMsg = validateInfo(context) + validateSublist(context);
+
             if (vErrMsg) {
                 var err = error.create({
                     name: '系統訊息',
