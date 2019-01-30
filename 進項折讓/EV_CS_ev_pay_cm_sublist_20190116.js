@@ -1,6 +1,7 @@
 /**
  * @NApiVersion 2.x
  * @NScriptType ClientScript
+ * 進項折讓明細-欄位檢核
  */
 
 define(['N/record','N/search','N/ui/message'],

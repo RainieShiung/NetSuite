@@ -1,7 +1,6 @@
 /**
  * taskToPurchase.js
  * @NApiVersion 2.x
- * 作廢
  */
 
 define(['N/record','N/ui/message','./Common_ColumnCheck','N/currentRecord','N/search','N/runtime','N/format'],

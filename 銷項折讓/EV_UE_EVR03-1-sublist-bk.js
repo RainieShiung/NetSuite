@@ -2,7 +2,7 @@
  * @NApiVersion 2.x
  * @NScriptType UserEventScript
  * @NModuleScope SameAccount
- * 
+ * 銷項折讓明細-存檔前檢核
  */
 define(['N/search','N/record','N/error','N/ui/message','N/currentRecord'],
 
@@ -26,7 +26,7 @@ function(search,record,error,message,cRecord)
 			//	"id": 
 			//});
 			// How many lines are on the Items sublist?
-			var LineCount = nRec.getLineCount({"sublistId": "recmachcustrecord_13_parent_id"});
+			var LineCount = nRec.getLineCount({"sublistId": "recmachcustrecord_13_parent_id(待補)"});
 			if(LineCount == 0){
 				//error
 			}

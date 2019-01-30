@@ -2,7 +2,7 @@
  * @NApiVersion 2.x
  * @NScriptType UserEventScript
  * @NModuleScope SameAccount
- * 
+ * 進項折讓明細-存檔前檢核
  */
 define(['N/search','N/record','N/error','N/ui/message','N/currentRecord'],
 

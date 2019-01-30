@@ -1,12 +1,14 @@
 /**
  * @NApiVersion 2.x
  * @NScriptType ClientScript
+ * 銷項折讓資訊-欄位檢核
  */
 define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
 
     function (record, search, message, common) {
         debugger
-        showMessage("訊息", "2019-01-22更新");
+        showMessage("訊息", "銷項折讓資訊：2019-01-28更新");
+        
         //訊息顯示
         /**
          * @description 訊息顯示
