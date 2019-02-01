@@ -1,5 +1,6 @@
 /**
  * @NApiVersion 2.x
+ * @NModuleScope Public
  */
 
 define(['N/record','N/search','N/ui/message','N/error'],
@@ -561,6 +562,45 @@ function(record,search,message,error) {
         return null;
     }
 
+    function GetTaxCodeMappingByName(Name){
+        if(Name == "" || Name == null || Name == "undefined"){
+            return null;
+            //return false;
+        }
+
+        var customrecord_ev_tax_code_mappingSearchObj = search.create({
+            type: "customrecord_ev_tax_code_mapping",
+            filters:
+            [
+                ["name","is",Name]
+            ],
+            columns:
+            [
+                search.createColumn({name: "custrecord_m_tax_code",label: "TAX_CODE"}),
+                search.createColumn({name: "custrecord_m_format_type", label: "FORMAT_TYPE"}),
+                search.createColumn({name: "custrecord_m_twgv_tax_code"}),
+                search.createColumn({name: "custrecord_m_tax_cacl_type", label: "TWGV_TAX_CALC_TYPE"})
+            ]
+        });
+        var mappingsearchResultCount = customrecord_ev_tax_code_mappingSearchObj.runPaged().count;
+        if(mappingsearchResultCount == 1){
+            var format_type = "";
+            var gv_tax_code = "";
+            var tax_cacl_type = "";
+            customrecord_ev_tax_code_mappingSearchObj.run().each(function(result){
+                // .run().each has a limit of 4,000 results
+                format_type = result.getValue({name: 'custrecord_m_format_type'}); 
+                gv_tax_code = result.getValue({name: 'custrecord_m_twgv_tax_code'}); 
+                tax_cacl_type = result.getValue({name: 'custrecord_m_tax_cacl_type'}); 
+                
+                return false;
+            });
+
+            return [format_type, gv_tax_code, tax_cacl_type];
+        }
+        return null;
+    }
+
     function showMessage(title,context){
         var myMsg = message.create({
             title: title, 
@@ -585,6 +625,7 @@ function(record,search,message,error) {
         GetTaxTypeByTaxCode: GetTaxTypeByTaxCode,
         GetTaxTypeByVandor : GetTaxTypeByVandor,
         GetValueByTaxType : GetValueByTaxType,
-        GetValueByTaxCode: GetValueByTaxCode
+        GetValueByTaxCode: GetValueByTaxCode,
+        GetTaxCodeMappingByName: GetTaxCodeMappingByName
     };
 });

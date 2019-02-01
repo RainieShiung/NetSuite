@@ -1,14 +1,15 @@
 /**
  * @NApiVersion 2.x
  * @NScriptType ClientScript
+ * @NModuleScope Public
  * 銷項折讓資訊-欄位檢核
  */
-define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
+define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'],
 
     function (record, search, message, common) {
         debugger
-        showMessage("訊息", "銷項折讓資訊：2019-01-28更新");
-        
+        showMessage("訊息", "銷項折讓資訊-欄位檢核：2019-02-01更新");
+
         //訊息顯示
         /**
          * @description 訊息顯示
@@ -96,84 +97,44 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
             var searchResultCount = -1;
 
             //#region 取得：欄位資料[基本資料]
-            /**@description 稅籍編號(下拉) @returns Text */
-            var $ddlTaxNumber = currentRecord.getText({
-                fieldId: 'custrecord_3_registration_number'
-            });
-            /**@description 稅籍編號(下拉) @returns Value */
-            var $ddlTaxNumberVal = currentRecord.getValue({
-                fieldId: 'custrecord_3_registration_number'
-            });
-            /** @description 折讓簿冊別(下拉) @returns Text */
-            var $ddlAllowanceBookId = currentRecord.getText({
-                fieldId: 'custrecord_3_gui_book_id'
-            });
+            /**@description 稅籍編號(下拉) */
+            var $ddlTaxNumber = currentRecord.getText({ fieldId: 'custrecord_3_registration_number' });
+            /**@description 稅籍編號(下拉) */
+            var $ddlTaxNumberVal = currentRecord.getValue({ fieldId: 'custrecord_3_registration_number' });
+            /** @description 折讓簿冊別(下拉) */
+            var $ddlAllowanceBookId = currentRecord.getText({ fieldId: 'custrecord_3_gui_book_id' });
             /**@description 折讓單號 */
-            var $txtAllowanceNumber = currentRecord.getValue({
-                fieldId: 'custrecord_3_other_desc'
-            });
-            /** @description 格式別(下拉)；
-             *  @summary 
-             *  33：
-             *  34：
-             *  @returns Text */
-            var $ddlFormatType = currentRecord.getText({
-                fieldId: 'custrecord_3_format_type'
-            });
-            /** @description 課稅別(下拉)；
-             *  @summary 1：應稅 2：零稅率 3：免稅
-             *  @returns Text */
-            var $ddlTaxCode = currentRecord.getText({
-                fieldId: 'custrecord_3_tax_code'
-            });
+            var $txtAllowanceNumber = currentRecord.getValue({ fieldId: 'custrecord_3_other_desc' });
+            /** @description 格式別(下拉) */
+            var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
+            /** @description 課稅別(下拉) */
+            var $ddlTaxCode = currentRecord.getText({ fieldId: 'custrecord_3_tax_code' });
             //-------------------------------------------------------
             /**@description 折讓日期(日期格式) */
-            var $txtAllowanceDate = currentRecord.getValue({
-                fieldId: 'custrecord_3_gui_date'
-            });
+            var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
             /**@description 所屬年 */
-            var $txtOwnYear = currentRecord.getValue({
-                fieldId: 'custrecord_3_occured_year'
-            });
+            var $txtOwnYear = currentRecord.getValue({ fieldId: 'custrecord_3_occured_year' });
             /**@description 所屬月 */
-            var $txtOwnMonth = currentRecord.getValue({
-                fieldId: 'custrecord_3_occured_month'
-            });
+            var $txtOwnMonth = currentRecord.getValue({ fieldId: 'custrecord_3_occured_month' });
             /**@description 折讓金額 */
-            var $txtAllowanceAmount = currentRecord.getValue({
-                fieldId: 'custrecord_3_sales_amt'
-            });
+            var $txtAllowanceAmount = currentRecord.getValue({ fieldId: 'custrecord_3_sales_amt' });
             /**@description 折讓稅額 */
-            var $txtAllowanceTax = currentRecord.getValue({
-                fieldId: 'custrecord_3_vat_io'
-            });
+            var $txtAllowanceTax = currentRecord.getValue({ fieldId: 'custrecord_3_vat_io' });
             //-------------------------------------------------------
             /**@description 備註 */
-            var $txtRemarks = currentRecord.getValue({
-                fieldId: 'custrecord_3_remarks_columns'
-            });
+            var $txtRemarks = currentRecord.getValue({ fieldId: 'custrecord_3_remarks_columns' });
             /**@description 狀態 */
-            var $txtStatus = currentRecord.getValue({
-                fieldId: 'custrecord_3_approved_flag'
-            });
+            var $txtStatus = currentRecord.getValue({ fieldId: 'custrecord_3_approved_flag' });
             /**@description APPROVED_BY */
-            var $txtApprovedBy = currentRecord.getValue({
-                fieldId: 'custrecord_3_approved_by'
-            });
+            var $txtApprovedBy = currentRecord.getValue({ fieldId: 'custrecord_3_approved_by' });
             /**@description 開立人員 */
-            var $txtOpenStaff = currentRecord.getValue({
-                fieldId: 'custrecord_3_created_by'
-            });
+            var $txtOpenStaff = currentRecord.getValue({ fieldId: 'custrecord_3_created_by' });
             //#endregion
             //#region 取得：欄位資料[客戶資訊]
-            /** @description 客戶名稱(下拉) @returns Text */
-            var $ddlCustomerName = currentRecord.getText({
-                fieldId: 'custrecord_3_customer_name'
-            });
+            /** @description 客戶名稱(下拉) */
+            var $ddlCustomerName = currentRecord.getText({ fieldId: 'custrecord_3_customer_name' });
             /**@description 客戶統編 */
-            var $txtCustomerUniform = currentRecord.getValue({
-                fieldId: 'custrecord_3_buyer_no'
-            });
+            var $txtCustomerUniform = currentRecord.getValue({ fieldId: 'custrecord_3_buyer_no' });
             //#endregion
             //#region 欄位檢核
             //#region 補充
