@@ -1,17 +1,15 @@
 /**
- * @NApiVersion 2.x
- * @NScriptType ClientScript
- * @NModuleScope SameAccount
- * 
- * [Estimate] 從[專案]:[備註]帶入估價單之[專案備註]
- *
- * 
- */
-define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
+* @NApiVersion 2.x
+* @NScriptType ClientScript
+* @NModuleScope Public
+* 進項折讓資訊-欄位檢核
+*/
+define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'],
 
     function (record, search, message, common) {
 
-        //訊息顯示
+        showMessage("訊息", "進項折讓資訊-欄位檢核：2019-02-15更新");
+
         /**
          * @description 訊息顯示
          * @param {string} title 提示
@@ -29,7 +27,6 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
             });
         }
 
-        //取得：下拉List選單(格式別 | 課稅別 | 扣抵代號)的value
         /**
          * @description 取得：下拉List選單(格式別 | 課稅別 | 扣抵代號)的value
          * @param {string} options 下拉選單值
@@ -59,7 +56,6 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
             return vLookupCode;
         }
 
-        //檢核：統一編號
         /**
          * @description 檢核：統一編號
          * @param {stirng} taxId 統一編號
@@ -85,7 +81,6 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
             return sum % 10 == 0 || (taxId[6] == "7" && (sum + 1) % 10 == 0);
         };
 
-        //2.1.2 進項折讓資訊→欄位檢核
         /**
          * @description 2.1.2 進項折讓資訊→欄位檢核
          * @param {any} context 
@@ -98,95 +93,49 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
             var searchResultCount = -1;
 
             //#region 取得：欄位資料[基本資料]
-            /**@description 稅籍編號(下拉) @returns Text */
-            var $ddlRegistrationNumber = currentRecord.getText({
-                fieldId: 'custrecord_12_registration_number'
-            });
-            /**@description 稅籍編號(下拉) @returns Value */
-            var $ddlRegistrationNumberVal = currentRecord.getValue({
-                fieldId: 'custrecord_12_registration_number'
-            });
-            /** @description 折讓簿冊別(下拉) @returns Text */
-            var $ddlGuiBookId = currentRecord.getText({
-                fieldId: 'custrecord_12_gui_book_id'
-            });
-            /** @description 格式別(下拉)；
-             *  @summary 
-             *  23：
-             *  24：
-             *  29：
-             *  @returns Text */
-            var $ddlFormatType = currentRecord.getText({
-                fieldId: 'custrecord_12_format_type'
-            });
-            /** @description 課稅別(下拉)；
-             *  @summary 1：應稅 2：零稅率 3：免稅
-             *  @returns Text */
-            var $ddlTaxCode = currentRecord.getText({
-                fieldId: 'custrecord_12_tax_code'
-            });
-            /** @description 扣抵代號(下拉)；
-             *  @summary 
-             *  1：
-             *  2：
-             *  3：
-             *  4：
-             *  @returns Text */
-            var $ddlCutCode = currentRecord.getText({
-                fieldId: 'custrecord_12_cut_code'
-            });
-            /** @description 扣抵種類(下拉)；
-             *  @summary 1：應稅 2：免稅 3：共同
-             *  @returns Text */
-            var $ddlCutType = currentRecord.getText({
-                fieldId: 'custrecord_12_cut_type'
-            });
+            /**@description 稅籍編號(下拉) */
+            var $ddlRegistrationNumber = currentRecord.getText({ fieldId: 'custrecord_12_registration_number' });
+            /**@description 稅籍編號(下拉) */
+            var $ddlRegistrationNumberVal = currentRecord.getValue({ fieldId: 'custrecord_12_registration_number' });
+            /**@description 折讓簿冊別(下拉) */
+            var $ddlGuiBookId = currentRecord.getText({ fieldId: 'custrecord_12_gui_book_id' });
+            /**@description 格式別(下拉) */
+            //23:、24、29
+            var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_12_format_type' });
+            /**@description 課稅別(下拉) */
+            //1:應稅、2:零稅率、3:免稅
+            var $ddlTaxCode = currentRecord.getText({ fieldId: 'custrecord_12_tax_code' });
+            /**@description 扣抵代號(下拉) */
+            //1、2、3、4
+            var $ddlCutCode = currentRecord.getText({ fieldId: 'custrecord_12_cut_code' });
+            /**@description 扣抵種類(下拉) */
+            //1:應稅、2:免稅、3:共同
+            var $ddlCutType = currentRecord.getText({ fieldId: 'custrecord_12_cut_type' });
             //-------------------------------------------------------
             /**@description 所屬年 */
-            var $txtOccuredYear = currentRecord.getValue({
-                fieldId: 'custrecord_12_occured_year'
-            });
+            var $lblOccuredYear = currentRecord.getValue({ fieldId: 'custrecord_12_occured_year' });
             /**@description 所屬月 */
-            var $txtOccuredMonth = currentRecord.getValue({
-                fieldId: 'custrecord_12_occured_month'
-            });
+            var $lblOccuredMonth = currentRecord.getValue({ fieldId: 'custrecord_12_occured_month' });
             /**@description 折讓日期(日期格式) */
-            var $txtGuiDate = currentRecord.getValue({
-                fieldId: 'custrecord_12_gui_date'
-            });
-            /**@description 折讓單號 */
-            var $txtOtherDesc = currentRecord.getValue({
-                fieldId: 'custrecord_12_other_desc'
-            });
-            /** @description 資料類型(下拉)；
-             *  @summary 購買國外勞務、進口免稅貨物
-             *  @returns Text */
-            var $ddlDataType = currentRecord.getText({
-                fieldId: 'custrecord_12_data_type'
-            });
-            /**@description 備註 */
-            var $txtRemarksColumns = currentRecord.getValue({
-                fieldId: 'custrecord_12_remarks_columns'
-            });
+            var $txtGuiDate = currentRecord.getValue({ fieldId: 'custrecord_12_gui_date' });
+            /**@description 折讓單號(Textbox) */
+            var $txtOtherDesc = currentRecord.getValue({ fieldId: 'custrecord_12_other_desc' });
+            /**@description 資料類型(下拉) */
+            //購買國外勞務、進口免稅貨物
+            var $ddlDataType = currentRecord.getText({ fieldId: 'custrecord_12_data_type' });
+            /**@description 備註(Textbox) */
+            var $txtRemarksColumns = currentRecord.getValue({ fieldId: 'custrecord_12_remarks_columns' });
             //-------------------------------------------------------
-            /**@description 折讓金額 */
-            var $txtSalesAmt = currentRecord.getValue({
-                fieldId: 'custrecord_12_sales_amt'
-            });
+            /**@description 折讓金額(Textbox) */
+            var $txtSalesAmt = currentRecord.getValue({ fieldId: 'custrecord_12_sales_amt' });
             /**@description 折讓稅額 */
-            var $lblVatIo = currentRecord.getValue({
-                fieldId: 'custrecord_12_vat_io'
-            });
+            var $lblVatIo = currentRecord.getValue({ fieldId: 'custrecord_12_vat_io' });
             //#endregion
             //#region 取得：欄位資料[廠商資訊]
-            /** @description 廠商名稱(下拉) @returns Text */
-            var $ddlVendorName = currentRecord.getText({
-                fieldId: 'custrecord_12_vendor_name'
-            });
-            /**@description 廠商統一編號 */
-            var $txtSalesNo = currentRecord.getValue({
-                fieldId: 'custrecord_12_sales_no'
-            });
+            /**@description 廠商名稱(下拉) */
+            var $ddlVendorName = currentRecord.getText({ fieldId: 'custrecord_12_vendor_name' });
+            /**@description 廠商統一編號(Textbox) */
+            var $txtSalesNo = currentRecord.getValue({ fieldId: 'custrecord_12_sales_no' });
             //#endregion
             //#region 欄位檢核
 
@@ -220,6 +169,7 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
                 if ($ddlRegistrationNumber
                     && $ddlGuiBookId
                     && $txtGuiDate) {
+                        debugger
                     //折讓日期-年
                     var vYear = parseInt($txtGuiDate.getFullYear(), 10);
                     //折讓日期-月
@@ -247,8 +197,8 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
                                 search.createColumn({ name: "custrecord_19_gui_type", label: "發票簿類別" }),
                                 search.createColumn({ name: "custrecord_19_gui_year", label: "年度" }),
                                 search.createColumn({ name: "custrecord_19_gui_start_month", label: "起月" }),
-                                search.createColumn({ name: "custrecord_19_gui_end_month", label: "迄月" }),
-                                search.createColumn({ name: "custrecord_19_gui_book_no", label: "冊別" })
+                                search.createColumn({ name: "custrecord_19_gui_end_month", label: "迄月" })
+                                /*search.createColumn({ name: "custrecord_19_gui_book_no", label: "冊別" })*/
                             ]
                     });
                     var searchResultCount = customrecord_ev_gui_books_allSearchObj.runPaged().count;
@@ -273,10 +223,10 @@ define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
                 || sublistFieldName === "custrecord_12_occured_month") {
 
                 if ($ddlRegistrationNumber
-                    && $txtOccuredYear
-                    && $txtOccuredMonth) {
+                    && $lblOccuredYear
+                    && $lblOccuredMonth) {
                     //var vMonth = parseInt($lblOccuredMonth, 10);
-                    common.DateCheck($txtOccuredYear, $txtOccuredMonth, $ddlRegistrationNumberVal);
+                    common.DateCheck($lblOccuredYear, $lblOccuredMonth, $ddlRegistrationNumberVal);
                 }
             }
             //#endregion
