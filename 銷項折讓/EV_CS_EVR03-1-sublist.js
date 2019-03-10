@@ -9,7 +9,8 @@ define(['N/record', 'N/search', 'N/ui/message'],
     function (record, search, message) {
 
         debugger
-        showMessage("訊息", "銷項折讓明細-欄位檢核：2019-02-01更新");
+        //showMessage("訊息", "銷項折讓明細-欄位檢核：2019-02-01更新");
+        showMessage("訊息", "銷項折讓明細-欄位檢核：2019-03-10更新");
 
         //#region 銷項折讓明細-資料表 | 欄位名稱
         /** @description  銷項折讓明細*/ var $tbSalesDiscountDetails = "recmachcustrecord_4_gui_id";
@@ -98,6 +99,8 @@ define(['N/record', 'N/search', 'N/ui/message'],
 
             /** @description 格式別(下拉)； @returns Text */
             var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
+            /** @description 格式別(下拉)； @returns Text */
+            var $ddlFormatTypeVal = currentRecord.getValue({ fieldId: 'custrecord_3_format_type' });
 
             /**@description 折讓日期(日期格式) */
             var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
@@ -148,6 +151,7 @@ define(['N/record', 'N/search', 'N/ui/message'],
                         var vFormat = "";
                         if ($ddlFormatType) {
                             vFormat = getLookupCode($ddlFormatType);
+                            //vFormat = $ddlFormatTypeVal;
                         }
 
                         if (vFormat == "33") {

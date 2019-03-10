@@ -8,6 +8,9 @@ define(['N/search', 'N/record', 'N/ui/message', 'N/error'],
 
 	function (search, record, message, error) {
 
+		debugger
+		showMessage("訊息", "銷項折讓明細-存檔前檢核：2019-02-01更新");
+
 		//#region 資料表 | 欄位名稱
 		/** @description  發票簿/折讓簿設定*/ var $tbInvoiceDiscountBookSetting = "customrecord_ev_gui_books_all";
 		/** @description  銷項折讓明細*/ var $tbSalesDiscountDetails = "recmachcustrecord_4_gui_id";
@@ -240,7 +243,7 @@ define(['N/search', 'N/record', 'N/ui/message', 'N/error'],
 						type: $tbSalesInvoiceInfo,
 						filters:
 							[
-								["custrecord_1_gui_no", "is", vGuiNos]
+								[$colGuiNo, "is", vGuiNos]
 							],
 						columns:
 							[

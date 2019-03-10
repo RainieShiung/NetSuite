@@ -1,15 +1,15 @@
 /**
  * @NApiVersion 2.x
  * @NScriptType ClientScript
- * @NModuleScope Public
  * 銷項折讓資訊-欄位檢核
  */
-define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'],
+define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
 
     function (record, search, message, common) {
         debugger
-        showMessage("訊息", "銷項折讓資訊-欄位檢核：2019-02-01更新");
-
+        //showMessage("訊息", "銷項折讓資訊：2019-01-27更新");
+        //showMessage("訊息", "銷項折讓資訊-欄位檢核：2019-02-01更新");
+        showMessage("訊息", "銷項折讓資訊-欄位檢核：2019-03-10更新");
         //訊息顯示
         /**
          * @description 訊息顯示
@@ -107,8 +107,12 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             var $txtAllowanceNumber = currentRecord.getValue({ fieldId: 'custrecord_3_other_desc' });
             /** @description 格式別(下拉) */
             var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
+            /** @description 格式別(下拉) */
+            var $ddlFormatTypeVal = currentRecord.getValue({ fieldId: 'custrecord_3_format_type' });
             /** @description 課稅別(下拉) */
             var $ddlTaxCode = currentRecord.getText({ fieldId: 'custrecord_3_tax_code' });
+            /** @description 課稅別(下拉) */
+            var $ddlTaxCodeVal = currentRecord.getValue({ fieldId: 'custrecord_3_tax_code' });
             //-------------------------------------------------------
             /**@description 折讓日期(日期格式) */
             var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
@@ -144,6 +148,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                 if ($txtAllowanceAmount
                     && $ddlTaxCode) {
                     var vTaxation = getLookupCode($ddlTaxCode);
+                    //var vTaxation = $ddlTaxCodeVal;
                     if (vTaxation == "1") {
                         currentRecord.setValue({
                             fieldId: 'custrecord_3_vat_io',
@@ -239,6 +244,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             if (sublistFieldName === "custrecord_3_format_type"
                 || sublistFieldName === "custrecord_3_buyer_no") {
                 var vFormat = getLookupCode($ddlFormatType);
+                //var vFormat = $ddlFormatTypeVal;
                 if (vFormat == "33"
                     && !$txtCustomerUniform) {
                     showMessage("訊息", "格式代碼為33，請輸入統一編號");
@@ -251,6 +257,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                 || sublistFieldName === "custrecord_3_vat_io") {
                 //1:應稅、2:零稅率、3:免稅
                 var vTaxation = getLookupCode($ddlTaxCode);
+                //var vTaxation = $ddlTaxCodeVal;
                 if (vTaxation && vTaxation != "1" && $txtAllowanceTax != "0") {
                     showMessage("訊息", "折讓稅額一定要為0");
                 }

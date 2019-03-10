@@ -4,11 +4,12 @@
 * @NModuleScope Public
 * 進項折讓資訊-欄位檢核
 */
-define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'],
+define(['N/record', 'N/search', 'N/ui/message', './Common_ColumnCheck'],
 
     function (record, search, message, common) {
 
-        showMessage("訊息", "進項折讓資訊-欄位檢核：2019-02-15更新");
+        debugger
+        showMessage("訊息", "進項折讓資訊：2019-03-10更新");
 
         /**
          * @description 訊息顯示
@@ -100,16 +101,18 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             /**@description 折讓簿冊別(下拉) */
             var $ddlGuiBookId = currentRecord.getText({ fieldId: 'custrecord_12_gui_book_id' });
             /**@description 格式別(下拉) */
-            //23:、24、29
             var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_12_format_type' });
-            /**@description 課稅別(下拉) */
-            //1:應稅、2:零稅率、3:免稅
+            /**@description 格式別(下拉) */
+            var $ddlFormatTypeVal = currentRecord.getValue({ fieldId: 'custrecord_12_format_type' });
+            /**@description 課稅別(下拉) 1:應稅、2:零稅率、3:免稅*/
             var $ddlTaxCode = currentRecord.getText({ fieldId: 'custrecord_12_tax_code' });
+            /**@description 課稅別(下拉) 1:應稅、2:零稅率、3:免稅*/
+            var $ddlTaxCodeVal = currentRecord.getValue({ fieldId: 'custrecord_12_tax_code' });
             /**@description 扣抵代號(下拉) */
-            //1、2、3、4
             var $ddlCutCode = currentRecord.getText({ fieldId: 'custrecord_12_cut_code' });
-            /**@description 扣抵種類(下拉) */
-            //1:應稅、2:免稅、3:共同
+            /**@description 扣抵代號(下拉) */
+            var $ddlCutCodeVal = currentRecord.getValue({ fieldId: 'custrecord_12_cut_code' });
+            /**@description 扣抵種類(下拉) 1:應稅、2:免稅、3:共同*/
             var $ddlCutType = currentRecord.getText({ fieldId: 'custrecord_12_cut_type' });
             //-------------------------------------------------------
             /**@description 所屬年 */
@@ -118,13 +121,13 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             var $lblOccuredMonth = currentRecord.getValue({ fieldId: 'custrecord_12_occured_month' });
             /**@description 折讓日期(日期格式) */
             var $txtGuiDate = currentRecord.getValue({ fieldId: 'custrecord_12_gui_date' });
-            /**@description 折讓單號(Textbox) */
-            var $txtOtherDesc = currentRecord.getValue({ fieldId: 'custrecord_12_other_desc' });
+            ///**@description 折讓單號(Textbox) */
+            //var $txtOtherDesc = currentRecord.getValue({ fieldId: 'custrecord_12_other_desc' });
             /**@description 資料類型(下拉) */
             //購買國外勞務、進口免稅貨物
             var $ddlDataType = currentRecord.getText({ fieldId: 'custrecord_12_data_type' });
-            /**@description 備註(Textbox) */
-            var $txtRemarksColumns = currentRecord.getValue({ fieldId: 'custrecord_12_remarks_columns' });
+            ///**@description 備註(Textbox) */
+            //var $txtRemarksColumns = currentRecord.getValue({ fieldId: 'custrecord_12_remarks_columns' });
             //-------------------------------------------------------
             /**@description 折讓金額(Textbox) */
             var $txtSalesAmt = currentRecord.getValue({ fieldId: 'custrecord_12_sales_amt' });
@@ -132,8 +135,8 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             var $lblVatIo = currentRecord.getValue({ fieldId: 'custrecord_12_vat_io' });
             //#endregion
             //#region 取得：欄位資料[廠商資訊]
-            /**@description 廠商名稱(下拉) */
-            var $ddlVendorName = currentRecord.getText({ fieldId: 'custrecord_12_vendor_name' });
+            ///**@description 廠商名稱(下拉) */
+            //var $ddlVendorName = currentRecord.getText({ fieldId: 'custrecord_12_vendor_name' });
             /**@description 廠商統一編號(Textbox) */
             var $txtSalesNo = currentRecord.getValue({ fieldId: 'custrecord_12_sales_no' });
             //#endregion
@@ -147,6 +150,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                 if ($txtSalesAmt
                     && $ddlTaxCode) {
                     var vTaxation = getLookupCode($ddlTaxCode);
+                    //var vTaxation = $ddlTaxCodeVal;
                     if (vTaxation == "1") {
                         //$lblVatIo = $txtSalesAmt * 0.05;
                         currentRecord.setValue({
@@ -169,7 +173,6 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                 if ($ddlRegistrationNumber
                     && $ddlGuiBookId
                     && $txtGuiDate) {
-                        debugger
                     //折讓日期-年
                     var vYear = parseInt($txtGuiDate.getFullYear(), 10);
                     //折讓日期-月
@@ -207,7 +210,6 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                         // .run().each has a limit of 4,000 results
                         return true;
                     });
-
                     //#endregion
                     if (searchResultCount == 0) {
                         showMessage("訊息", "此折讓日期未在折讓簿使用期間內");
@@ -244,6 +246,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             //#region 2.1.2.4 格式別/廠商統一編號(共用-待補)
             if (sublistFieldName === "custrecord_12_format_type") {
                 var vFormat = getLookupCode($ddlFormatType);
+                //var vFormat = $ddlFormatTypeVal;
                 if ((vFormat == "23" || vFormat == "29")
                     && !$txtSalesNo) {
                     showMessage("訊息", "格式代碼為23, 29時，請輸入統一編號");
@@ -256,6 +259,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                 || sublistFieldName === "custrecord_12_vat_io") {
                 //1:應稅、2:零稅率、3:免稅
                 var vTaxation = getLookupCode($ddlTaxCode);
+                //var vTaxation = $ddlTaxCodeVal;
                 if (vTaxation && vTaxation != "1" && $lblVatIo != "0") {
                     showMessage("訊息", "折讓稅額一定要為0");
                 }
@@ -269,6 +273,8 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                 if ($ddlTaxCode && $ddlCutCode) {
                     var vTaxation = getLookupCode($ddlTaxCode);
                     var vDeduction = getLookupCode($ddlCutCode);
+                    //var vTaxation = $ddlTaxCodeVal;
+                    //var vDeduction = $ddlCutCodeVal;
                     if ((vTaxation == "2" || vTaxation == "3")
                         && (vDeduction == "1" || vDeduction == "2")) {
                         showMessage("訊息", "課稅別為零稅或免稅時，則扣抵代號要為3或4");
@@ -283,6 +289,8 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                 if ($ddlFormatType && $ddlCutCode) {
                     var vFormat = getLookupCode($ddlFormatType);
                     var vDeduction = getLookupCode($ddlCutCode);
+                    //var vFormat = $ddlFormatTypeVal;
+                    //var vDeduction = $ddlCutCodeVal;
                     if (vFormat == "29"
                         && (vDeduction == "3" || vDeduction == "4")) {
                         showMessage("訊息", "格式別為29(海關退還溢繳營業稅)時，扣抵代號不得為3或4");
@@ -306,7 +314,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                         type: "customrecord_ev_registrations_all",
                         filters:
                             [
-                                ["name", "is", $ddlRegistrationNumber]
+                                ["name", "is", $ddlRegistrationNumber]//ddlRegistrationNumberVal 0310：可能要用這個參數
                             ],
                         columns:
                             [
@@ -360,6 +368,13 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                     if (sublistFieldName === "custrecord_12_registration_number"
                         || sublistFieldName === "custrecord_12_data_type"
                         || sublistFieldName === "custrecord_12_tax_code") {
+
+                        var vTaxCode = "";
+                        if (sublistFieldName === "custrecord_12_tax_code" && $ddlTaxCode) {
+                            vTaxCode = getLookupCode($ddlTaxCode);
+                            //vTaxCode = $ddlTaxCodeVal;
+                        }
+
                         switch (vDeclareType) {
                             case "401":
                                 //2.1.2.9.1 申報類型若為401，則此資料類型欄位須為空
@@ -371,13 +386,13 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                                 switch ($ddlDataType) {
                                     case "進口免稅貨物":
                                         //2.1.2.9.2 申報類型若為403，資料類型為「進口免稅貨物」且課稅別不為「免稅」
-                                        if (getLookupCode($ddlTaxCode) != "3") {
+                                        if (vTaxCode != "3") {
                                             showMessage("訊息", "進口免稅貨物，課稅別須為免稅");
                                         }
                                         break;
                                     case "購買國外勞務":
                                         //2.1.2.9.3 申報類型若為403，資料類型為「購買國外勞務」且課稅別為「應稅」
-                                        if (getLookupCode($ddlTaxCode) == "1") {
+                                        if (vTaxCode == "1") {
                                             showMessage("訊息", "購買國外勞務，課稅別不得為應稅");
                                         }
                                         break;

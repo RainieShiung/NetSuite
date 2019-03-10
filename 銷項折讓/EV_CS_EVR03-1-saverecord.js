@@ -168,8 +168,12 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             var $txtAllowanceNumber = currentRecord.getValue({ fieldId: 'custrecord_3_other_desc' });
             /** @description 格式別(下拉) */
             var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
+            /** @description 格式別(下拉) */
+            var $ddlFormatTypeVal = currentRecord.getValue({ fieldId: 'custrecord_3_format_type' });
             /** @description 課稅別(下拉) */
             var $ddlTaxCode = currentRecord.getText({ fieldId: 'custrecord_3_tax_code' });
+            /** @description 課稅別(下拉) */
+            var $ddlTaxCodeVal = currentRecord.getValue({ fieldId: 'custrecord_3_tax_code' });
             //-------------------------------------------------------
             /**@description 折讓日期(日期格式) */
             var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
@@ -261,6 +265,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             //#region 2.1.2.4 格式別/廠商統一編號
             if ($ddlFormatType) {
                 var vFormat = getLookupCode($ddlFormatType);
+                //var vFormat = $ddlFormatTypeVal;
                 if (vFormat == "33"
                     && !$txtCustomerUniform) {
                     vErrMsg += "格式代碼為33，請輸入統一編號\n";
@@ -271,6 +276,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             if ($ddlTaxCode) {
                 //1:應稅、2:零稅率、3:免稅
                 var vTaxation = getLookupCode($ddlTaxCode);
+                //var vTaxation = $ddlTaxCodeVal;
                 if (vTaxation && vTaxation != "1" && $txtAllowanceTax != "0") {
                     vErrMsg += "折讓稅額一定要為0\n";
                 }
@@ -295,6 +301,8 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
             //#region 取得：欄位資料[基本資料]
             /** @description 格式別(下拉) */
             var $ddlFormatType = currentRecord.getText({ fieldId: 'custrecord_3_format_type' });
+            /** @description 格式別(下拉) */
+            var $ddlFormatTypeVal = currentRecord.getValue({ fieldId: 'custrecord_3_format_type' });
             /** @description 折讓日期(日期格式) */
             var $txtAllowanceDate = currentRecord.getValue({ fieldId: 'custrecord_3_gui_date' });
             //#endregion
@@ -351,6 +359,7 @@ define(['N/record', 'N/search', 'N/ui/message', './commonAPI/Common_ColumnCheck'
                         /** @description  格式別*/ var vFormat = "";
                         if ($ddlFormatType) {
                             vFormat = getLookupCode($ddlFormatType);
+                            //vFormat = $ddlFormatTypeVal;
                         }
                         if (vFormat == "33") {
                             //#region 2.2.2.1.2 若銷項資訊格為別為33，且憑類別為零稅率時(待確認)
